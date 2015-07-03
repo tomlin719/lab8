@@ -1,0 +1,36 @@
+compile:
+	g++ -o test1 test1.cpp
+	g++ -o test2 test2.cpp
+	make
+excuate:
+	./test1
+	./test2
+	./main
+output:
+	A:
+	terminate called without an active exception
+	Aborted (core dumped)
+
+	B:
+	terminate called after throwing an instance of 'double'
+	Aborted (core dumped)
+
+	C:
+	0010
+	0010
+	0010
+	0010
+	After turn:
+	0000
+	0000
+	1111
+	0000
+
+	Exception: std::bad_alloc
+
+explain:
+	A:
+	第一個範例程式並沒有catch去接任何的exception,且沒有丟出任何的
+exception,除非是在nested try-catch,否則最外層不能丟throw
+	B:
+	因為是丟3.0為double,而接的是float,因此沒有catch能處理此exception
